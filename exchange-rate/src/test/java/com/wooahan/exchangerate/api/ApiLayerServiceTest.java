@@ -1,9 +1,10 @@
-package com.wooahan.api;
+package com.wooahan.exchangerate.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.wooahan.model.ApiLayerProperties;
-import com.wooahan.model.ApiLayerResponse;
+import com.wooahan.exchangerate.domain.ExchangeRate;
+import com.wooahan.exchangerate.model.ApiLayerProperties;
+import com.wooahan.exchangerate.model.ApiLayerResponse;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.*;
@@ -15,7 +16,7 @@ import reactor.test.StepVerifier;
 
 import java.io.IOException;
 
-import static com.wooahan.api.ApiLayerResponseFixture.createApiLayerResponse;
+import static com.wooahan.exchangerate.api.ApiLayerResponseFixture.createApiLayerResponse;
 
 @ExtendWith(MockitoExtension.class)
 public class ApiLayerServiceTest {
@@ -52,7 +53,7 @@ public class ApiLayerServiceTest {
                 .setBody(objectMapper.writeValueAsString(createApiLayerResponse()))
                 .addHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE));
 
-        Mono<ApiLayerResponse> expectedResponse = apiLayerService.getExchangeRate();
+        Mono<ApiLayerResponse> expectedResponse = apiLayerService.getExchangeRate(new ExchangeRate("KRW", "USD"));
 
         StepVerifier.create(expectedResponse)
                 .expectNextMatches(ApiLayerResponse::isSuccess)

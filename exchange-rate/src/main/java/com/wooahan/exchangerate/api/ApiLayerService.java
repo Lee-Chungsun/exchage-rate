@@ -1,12 +1,16 @@
-package com.wooahan.api;
+package com.wooahan.exchangerate.api;
 
-import com.wooahan.model.ApiLayerProperties;
-import com.wooahan.model.ApiLayerResponse;
+import com.wooahan.exchangerate.domain.ExchangeRate;
+import com.wooahan.exchangerate.model.ApiLayerProperties;
+import com.wooahan.exchangerate.model.ApiLayerResponse;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
+@ComponentScan(basePackages={"com.wooahan.exchangerate.model"})
 public class ApiLayerService {
     private final WebClient webClient;
     private final String accessKey;
@@ -17,13 +21,13 @@ public class ApiLayerService {
         this.webClient = WebClient.create(baseUri);
     }
 
-    public Mono<ApiLayerResponse> getExchangeRate() {
+    public Mono<ApiLayerResponse> getExchangeRate(ExchangeRate exchangeRate) {
 
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("access_key", accessKey)
-                        .queryParam("currencies", "EUR")
-                        .queryParam("source", "USD")
+                        .queryParam("currencies", exchangeRate.getCurrencies())
+                        .queryParam("source", exchangeRate.getSource())
                         .queryParam("format", "1")
                         .build())
                 .retrieve()

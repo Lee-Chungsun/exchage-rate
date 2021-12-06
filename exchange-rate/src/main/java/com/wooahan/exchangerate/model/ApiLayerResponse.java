@@ -1,4 +1,4 @@
-package com.wooahan.model;
+package com.wooahan.exchangerate.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -19,16 +18,20 @@ public class ApiLayerResponse {
     private String privacy;
     private LocalDateTime timestamp;
     private String source;
-    private List<Map<String, BigDecimal>> quotes;
+    private Map<String, BigDecimal> quotes;
 
     @Builder
-    public ApiLayerResponse( boolean success,  String terms,  String privacy,  LocalDateTime timestamp,
-                             String source,  List<Map<String, BigDecimal>> quotes) {
+    public ApiLayerResponse(boolean success, String terms, String privacy, LocalDateTime timestamp,
+                            String source, Map<String, BigDecimal> quotes) {
         this.success = success;
         this.terms = terms;
         this.privacy = privacy;
         this.timestamp = timestamp;
         this.source = source;
         this.quotes = quotes;
+    }
+
+    public ExchangeRateResponse toExchangeRateResponse(String quoteKey) {
+        return ExchangeRateResponse.toExchangeRateResponse(quotes.getOrDefault(quoteKey, BigDecimal.ZERO));
     }
 }
