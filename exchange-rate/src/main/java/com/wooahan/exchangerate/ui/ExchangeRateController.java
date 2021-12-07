@@ -6,7 +6,6 @@ import com.wooahan.exchangerate.dto.ExchangeRateResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,8 +16,8 @@ public class ExchangeRateController {
         this.exchangeRateService = exchangeRateService;
     }
 
-    @PostMapping("/ExchangeRate")
-    public ResponseEntity<ExchangeRateResponse> createStation(@RequestBody ExchangeRateRequest exchangeRateRequest) {
+    @PostMapping(value = "/ExchangeRate")
+    public ResponseEntity<ExchangeRateResponse> createStation(ExchangeRateRequest exchangeRateRequest) {
         ExchangeRateResponse exchangeRate = exchangeRateService.exchangeRate(exchangeRateRequest);
         return new ResponseEntity<ExchangeRateResponse>(exchangeRate, HttpStatus.OK);
     }
