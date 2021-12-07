@@ -1,4 +1,4 @@
-package com.wooahan.exchangerate.model;
+package com.wooahan.exchangerate.dto;
 
 import com.wooahan.exchangerate.domain.ExchangeRate;
 

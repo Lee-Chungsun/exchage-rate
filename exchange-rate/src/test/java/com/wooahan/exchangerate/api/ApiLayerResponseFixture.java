@@ -1,6 +1,6 @@
 package com.wooahan.exchangerate.api;
 
-import com.wooahan.exchangerate.model.ApiLayerResponse;
+import com.wooahan.exchangerate.dto.ApiLayerResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

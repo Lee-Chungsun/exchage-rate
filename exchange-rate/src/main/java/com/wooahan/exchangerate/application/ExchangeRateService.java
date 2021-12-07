@@ -2,9 +2,9 @@ package com.wooahan.exchangerate.application;
 
 import com.wooahan.exchangerate.api.ApiLayerService;
 import com.wooahan.exchangerate.domain.ExchangeRate;
-import com.wooahan.exchangerate.model.ApiLayerResponse;
-import com.wooahan.exchangerate.model.ExchangeRateRequest;
-import com.wooahan.exchangerate.model.ExchangeRateResponse;
+import com.wooahan.exchangerate.dto.ApiLayerResponse;
+import com.wooahan.exchangerate.dto.ExchangeRateRequest;
+import com.wooahan.exchangerate.dto.ExchangeRateResponse;
 import org.springframework.stereotype.Service;
 
 @Service
