@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionHandlerAdvice {
     @ExceptionHandler(NotInputMonetaryException.class)
     public ResponseEntity handleIllegalArgsException(NotInputMonetaryException e) {
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(WrongInputMonetaryException.class)
     public ResponseEntity handleIllegalArgsException(WrongInputMonetaryException e) {
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
