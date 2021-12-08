@@ -3,7 +3,6 @@ package com.wooahan.exchangerate.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.wooahan.exchangerate.domain.ExchangeRate;
-import com.wooahan.exchangerate.dto.ApiLayerProperties;
 import com.wooahan.exchangerate.dto.ApiLayerResponse;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;

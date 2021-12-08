@@ -1,7 +1,6 @@
 package com.wooahan.exchangerate.api;
 
 import com.wooahan.exchangerate.domain.ExchangeRate;
-import com.wooahan.exchangerate.dto.ApiLayerProperties;
 import com.wooahan.exchangerate.dto.ApiLayerResponse;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
