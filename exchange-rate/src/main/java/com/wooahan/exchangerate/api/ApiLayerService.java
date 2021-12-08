@@ -2,13 +2,11 @@ package com.wooahan.exchangerate.api;
 
 import com.wooahan.exchangerate.domain.ExchangeRate;
 import com.wooahan.exchangerate.dto.ApiLayerResponse;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-@ComponentScan(basePackages={"com.wooahan.exchangerate.dto"})
 public class ApiLayerService {
     private final WebClient webClient;
     private final String accessKey;

@@ -1,12 +1,15 @@
 package com.wooahan.exchangerate.dto;
 
+import com.wooahan.exchangerate.common.ExchangeValidator;
 import com.wooahan.exchangerate.domain.ExchangeRate;
 
 public class ExchangeRateRequest {
     private String source;
     private String currencies;
 
-    protected ExchangeRateRequest() {
+    public ExchangeRateRequest(String source, String currencies) {
+        this.source = source;
+        this.currencies = currencies;
     }
 
     public String getSource() {
@@ -25,11 +28,13 @@ public class ExchangeRateRequest {
         this.currencies = currencies;
     }
 
-    public ExchangeRate toExchangeRate() {
-        return new ExchangeRate(this.source, this.currencies);
-    }
-
     public String createQuoteKey() {
         return this.source.concat(this.currencies);
+    }
+
+    public ExchangeRate toExchangeRate() {
+        ExchangeValidator.validator(this.source);
+        ExchangeValidator.validator(this.currencies);
+        return new ExchangeRate(this.source, this.currencies);
     }
 }

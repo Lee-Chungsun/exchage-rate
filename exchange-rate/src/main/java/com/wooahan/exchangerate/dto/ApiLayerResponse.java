@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.wooahan.exchangerate.common.exception.WrongInputMonetaryException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,9 @@ public class ApiLayerResponse {
     }
 
     public ExchangeRateResponse toExchangeRateResponse(String quoteKey) {
+        if(!this.success){
+            throw new WrongInputMonetaryException("화폐 단위가 오입력되었습니다.");
+        }
         return ExchangeRateResponse.toExchangeRateResponse(quotes.getOrDefault(quoteKey, BigDecimal.ZERO));
     }
 }
